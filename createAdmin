@@ -1,1 +1,10 @@
-
+const pool = require("./src/db/db"); // or whatever your database file is called
+await pool.query(
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
+    [
+        'Admin',
+        'admin8862@gmail.com',
+        '$2b$10$QQjVB7xxq3wJZitTyGVjiOD.u09AiPaWg.6YuuBymnpGE7bdamC8a',
+        'admin'
+    ]
+);
