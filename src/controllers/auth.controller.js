@@ -5,6 +5,7 @@ const {
     uploadImage,
     deleteImage,
 } = require("../services/storage.services");
+const { users } = require("../db/schema/users");
 
 // ==========================================
 // LOGIN
