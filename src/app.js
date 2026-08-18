@@ -9,7 +9,7 @@ const upload = multer({ storage: multer.memoryStorage() })
 app.use(express.json())
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: "https://budget-tracker-frontend-woad.vercel.app",
         credentials: true,
     })
 );
