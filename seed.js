@@ -7,10 +7,10 @@ async function seed() {
         await pool.query(
             `INSERT INTO users (username, email, password, role)
        VALUES ($1, $2, $3, $4)`,
-            [
-                "Admin",
-                "admin8862@gmail.com",
-                "$2b$10$QQjVB7xxq3wJZitTyGVjiOD.u09AiPaWg.6YuuBymnpGE7bdamC8a",
+             [
+                "Ahmad",
+                "ahmad8862@gmail.com",
+                "$2b$10$rmJxjDPvJCsVNy3VfRab5uCE3unGQ2OWDYGZRaagAnv/HA8ZCmn5e",
                 "admin",
             ]
         );
