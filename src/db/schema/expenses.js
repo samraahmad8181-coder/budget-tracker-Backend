@@ -15,7 +15,7 @@ const expenses = pgTable("expenses", {
     subject: varchar("subject", { length: 255 }).notNull(),
     merchant: varchar("merchant", { length: 255 }).notNull(),
 
-    expenseDate: date("expense_date").notNull(),
+    expense_date: date("expense_date").notNull(),
 
     amount: decimal("amount", { precision: 12, scale: 2 }).notNull(),
     currency: varchar("currency", { length: 10 })
@@ -30,19 +30,15 @@ const expenses = pgTable("expenses", {
 
     description: text("description"),
 
-    employee: varchar("employee", { length: 255 }).notNull(),
+    name: varchar("name", { length: 255 }).notNull(),
 
-    reportName: varchar("report_name", { length: 255 }),
+    report_name: varchar("report_name", { length: 255 }),
 
     status: varchar("status", { length: 50 })
         .notNull()
         .default("Not Submitted"),
 
-    invoiceUrl: text("invoice_url"),
-
-    createdAt: timestamp("created_at").defaultNow(),
-
-    updatedAt: timestamp("updated_at").defaultNow(),
+    invoice_url: text("invoice_url"),
 });
 
 module.exports = { expenses };

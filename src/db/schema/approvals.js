@@ -12,11 +12,11 @@ const { trips } = require("./trips");
 const approvals = pgTable("approvals", {
     id: serial("id").primaryKey(),
 
-    expenseId: integer("expense_id").references(() => expenses.id, {
+    expense_id: integer("expense_id").references(() => expenses.id, {
         onDelete: "cascade",
     }),
 
-    tripId: integer("trip_id").references(() => trips.id, {
+    trip_id: integer("trip_id").references(() => trips.id, {
         onDelete: "cascade",
     }),
 
@@ -28,7 +28,7 @@ const approvals = pgTable("approvals", {
         .notNull()
         .default("Pending"),
 
-    createdAt: timestamp("created_at").defaultNow(),
+    created_at: timestamp("created_at").defaultNow(),
 });
 
 module.exports = { approvals };

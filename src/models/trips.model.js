@@ -5,7 +5,7 @@ const getAllTrips = async () => {
     const result = await pool.query(`
         SELECT *
         FROM trips
-        ORDER BY created_at DESC
+       ORDER BY id DESC
     `);
 
     return result.rows;
@@ -34,7 +34,7 @@ const createTrip = async (trip) => {
         category,
         purpose,
         flight_type,
-        depart_from,
+        depart_form,
         destination,
         start_date,
         end_date,
@@ -44,10 +44,8 @@ const createTrip = async (trip) => {
         hotel,
         currency,
         report_name,
-        status,
-        approved_by,
-        policy,
-        travel_documents,
+        status
+
     } = trip;
 
     const result = await pool.query(
@@ -57,7 +55,7 @@ const createTrip = async (trip) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -67,15 +65,12 @@ const createTrip = async (trip) => {
             hotel,
             currency,
             report_name,
-            status,
-            approved_by,
-            policy,
-            travel_documents
+            status
         )
         VALUES (
             $1, $2, $3, $4, $5, $6,
             $7, $8, $9, $10, $11, $12,
-            $13, $14, $15, $16, $17, $18
+            $13, $14, $15
         )
         RETURNING *
         `,
@@ -84,7 +79,7 @@ const createTrip = async (trip) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -94,10 +89,8 @@ const createTrip = async (trip) => {
             hotel,
             currency,
             report_name,
-            status,
-            approved_by,
-            policy,
-            travel_documents,
+            status
+
         ]
     );
 
@@ -112,7 +105,7 @@ const updateTrip = async (id, trip) => {
         category,
         purpose,
         flight_type,
-        depart_from,
+        depart_form,
         destination,
         start_date,
         end_date,
@@ -122,10 +115,7 @@ const updateTrip = async (id, trip) => {
         hotel,
         currency,
         report_name,
-        status,
-        approved_by,
-        policy,
-        travel_documents,
+        status
     } = trip;
 
     const result = await pool.query(
@@ -136,7 +126,7 @@ const updateTrip = async (id, trip) => {
             category = $2,
             purpose = $3,
             flight_type = $4,
-            depart_from = $5,
+            depart_form = $5,
             destination = $6,
             start_date = $7,
             end_date = $8,
@@ -146,12 +136,8 @@ const updateTrip = async (id, trip) => {
             hotel = $12,
             currency = $13,
             report_name = $14,
-            status = $15,
-            approved_by = $16,
-            policy = $17,
-            travel_documents = $18,
-            updated_at = CURRENT_TIMESTAMP
-        WHERE id = $19
+            status = $15        
+        WHERE id = $16
         RETURNING *
         `,
         [
@@ -159,7 +145,7 @@ const updateTrip = async (id, trip) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -170,9 +156,6 @@ const updateTrip = async (id, trip) => {
             currency,
             report_name,
             status,
-            approved_by,
-            policy,
-            travel_documents,
             id,
         ]
     );
@@ -187,8 +170,7 @@ const updateTripStatus = async (id, status) => {
         `
         UPDATE trips
         SET
-            status = $1,
-            updated_at = CURRENT_TIMESTAMP
+            status = $1
         WHERE id = $2
         RETURNING *
         `,

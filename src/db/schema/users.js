@@ -19,9 +19,9 @@ const users = pgTable("users", {
         .notNull()
         .default("user"),
 
-    createdAt: timestamp("created_at").defaultNow(),
+    profileImage: text("profile_image"),
 
-    updatedAt: timestamp("updated_at").defaultNow(),
+    profileFileId: text("profile_file_id"),
 });
 
 module.exports = { users };

@@ -5,14 +5,15 @@
 // });
 
 // module.exports = pool;
-
 const { Pool } = require("pg");
-const { drizzle } = require("drizzle-orm/node-postgres");
 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
+
+    ssl: process.env.NODE_ENV === "production"
+        ? { rejectUnauthorized: false }
+        : false,
 });
 
-const db = drizzle(pool);
 
-module.exports = { db, pool };
+module.exports = pool;

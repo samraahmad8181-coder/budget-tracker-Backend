@@ -1,6 +1,6 @@
 const tripModel = require("../models/trips.model");
 const approvalModel = require("../models/approval.model");
-
+const trips = require('../db/schema/trips')
 // GET /api/trips
 const getTrips = async (req, res) => {
     try {
@@ -59,7 +59,7 @@ const createTrip = async (req, res) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -69,17 +69,14 @@ const createTrip = async (req, res) => {
             hotel,
             currency,
             report_name,
-            status,
-            approved_by,
-            policy,
-            travel_documents,
-        } = req.body;
+            status
+        } = req.body || {};
 
         // Required fields
         if (
             !name ||
             !category ||
-            !depart_from ||
+            !depart_form ||
             !destination ||
             !start_date ||
             !end_date
@@ -99,7 +96,7 @@ const createTrip = async (req, res) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -109,10 +106,7 @@ const createTrip = async (req, res) => {
             hotel,
             currency: currency || "EUR",
             report_name,
-            status: status || "Pending",
-            approved_by,
-            policy,
-            travel_documents,
+            status: status || "Pending"
         });
 
         // ================================
@@ -159,7 +153,7 @@ const updateTrip = async (req, res) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -169,11 +163,8 @@ const updateTrip = async (req, res) => {
             hotel,
             currency,
             report_name,
-            status,
-            approved_by,
-            policy,
-            travel_documents,
-        } = req.body;
+            status
+        } = req.body || {};
 
 
         const trip = await tripModel.updateTrip(id, {
@@ -181,7 +172,7 @@ const updateTrip = async (req, res) => {
             category,
             purpose,
             flight_type,
-            depart_from,
+            depart_form,
             destination,
             start_date,
             end_date,
@@ -191,10 +182,7 @@ const updateTrip = async (req, res) => {
             hotel,
             currency,
             report_name,
-            status,
-            approved_by,
-            policy,
-            travel_documents,
+            status
         });
 
 
@@ -219,7 +207,7 @@ const updateTrip = async (req, res) => {
 const updateTripStatus = async (req, res) => {
     try {
         const { id } = req.params;
-        const { status } = req.body;
+        const { status } = req.body || {};
 
         if (!status) {
             return res.status(400).json({

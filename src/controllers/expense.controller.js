@@ -1,5 +1,6 @@
 const expenseModel = require("../models/expense.model");
 const approvalModel = require("../models/approval.model");
+const expenses = require('../db/schema/expenses')
 
 // GET /api/expenses
 const getExpenses = async (req, res) => {

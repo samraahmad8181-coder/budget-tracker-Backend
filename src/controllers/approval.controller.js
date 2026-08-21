@@ -1,4 +1,5 @@
 const approvalModel = require("../models/approval.model");
+const { approvals } = require('../db/schema/approvals')
 
 
 // ===============================

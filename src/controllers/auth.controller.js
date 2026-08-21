@@ -21,6 +21,7 @@ const loginUser = async (req, res) => {
         }
 
         const user = await userModel.getUserByEmail(email);
+        console.log(user);
 
         if (!user) {
             return res.status(401).json({

@@ -36,7 +36,7 @@ const getDashboardData = async () => {
         FROM expenses e
         LEFT JOIN approvals a
             ON a.expense_id = e.id
-        ORDER BY e.created_at DESC
+        ORDER BY e.id DESC
         LIMIT 5
     `);
 

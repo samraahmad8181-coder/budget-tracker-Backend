@@ -5,7 +5,7 @@ const getAllExpenses = async () => {
     const result = await pool.query(`
         SELECT *
         FROM expenses
-        ORDER BY created_at DESC
+        ORDER BY id DESC
     `);
 
     return result.rows;
@@ -115,8 +115,7 @@ const updateExpense = async (id, expense) => {
             name = $9,
             report_name = $10,
             status = $11,
-            invoice_url = $12,
-            updated_at = CURRENT_TIMESTAMP
+            invoice_url = $12
         WHERE id = $13
         RETURNING *
         `,
