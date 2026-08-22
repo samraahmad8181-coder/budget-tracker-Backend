@@ -17,7 +17,7 @@ app.use(express.json());
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://budget-tracker-frontend-woad.vercel.app",
+    "https://budget-tracker-frontend-git-main-samraahmad8181-6269s-projects.vercel.app/",
 ];
 
 app.use(
