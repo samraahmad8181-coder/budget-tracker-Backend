@@ -1,35 +1,44 @@
 const express = require("express");
+const multer = require("multer");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const app = express();
 
-const multer = require("multer");
-
-const cookieParser = require("cookie-parser");
-
-const cors = require("cors");
-
 const upload = multer({
-    storage: multer.memoryStorage()
+    storage: multer.memoryStorage(),
 });
 
-// Middlewares
+// ==========================================
+// MIDDLEWARES
+// ==========================================
+
 app.use(express.json());
 
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://budget-tracker-frontend-git-main-samraahmad8181-6269s-projects.vercel.app/",
+    "https://budget-tracker-frontend-git-main-samraahmad8181-6269s-projects.vercel.app",
 ];
 
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: function (origin, callback) {
+            if (!origin || allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error("Not allowed by CORS"));
+            }
+        },
         credentials: true,
     })
 );
 
 app.use(cookieParser());
 
-// Routes
+// ==========================================
+// ROUTES
+// ==========================================
+
 const expenseRoutes = require("./routes/expense.route");
 const authRoutes = require("./routes/auth.route");
 const tripRoutes = require("./routes/trips.route");
